@@ -1,7 +1,3 @@
-// ===============================
-// MongoDB Lab - Complete Script
-// ===============================
-
 // 1. Create Database & Collection
 use labDB;
 db.createCollection("users");
@@ -91,7 +87,3 @@ db.users.insertMany([
   { name: "David", age: 35 },
   { name: "Eva", age: 22 }
 ]);
-
-// ===============================
-// End of Script
-// ===============================
