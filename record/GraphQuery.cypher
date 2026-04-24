@@ -4,10 +4,7 @@
 MATCH (n)
 DETACH DELETE n;
 
-// ===============================
 // 1. CREATE NODES & RELATIONSHIPS
-// ===============================
-
 // Create Persons
 CREATE (:Person {name:'Alice', age:25});
 CREATE (:Person {name:'Bob', age:30});
@@ -37,39 +34,27 @@ CREATE
 
 // ===============================
 // 2. RETRIEVE DATA
-// ===============================
-
 // All nodes
-MATCH (n)
-RETURN n;
+MATCH (n) RETURN n;
 
 // All nodes + relationships
-MATCH (n)-[r]->(m)
-RETURN n,r,m;
+MATCH (n)-[r]->(m) RETURN n,r,m;
 
 // All Persons
-MATCH (p:Person)
-RETURN p;
+MATCH (p:Person) RETURN p;
 
 // ===============================
 // 3. UPDATE
-// ===============================
-
 // Update age
-MATCH (p:Person {name:'Alice'})
-SET p.age = 26;
+MATCH (p:Person {name:'Alice'}) SET p.age = 26;
 
 // Add new property
-MATCH (p:Person)
-SET p.gender = 'Female';
+MATCH (p:Person) SET p.gender = 'Female';
 
 // ===============================
 // 4. DELETE
-// ===============================
-
 // Delete relationship only
-MATCH (a:Person {name:'Alice'})-[r:LIVES_IN]->(c:City)
-DELETE r;
+MATCH (a:Person {name:'Alice'})-[r:LIVES_IN]->(c:City) DELETE r;
 
 // Recreate it
 MATCH (a:Person {name:'Alice'}), (c:City {name:'Kozhikode'})
@@ -77,8 +62,6 @@ CREATE (a)-[:LIVES_IN]->(c);
 
 // ===============================
 // 5. QUERY OPERATIONS
-// ===============================
-
 // Persons in Kozhikode
 MATCH (p:Person)-[:LIVES_IN]->(c:City {name:'Kozhikode'})
 RETURN p.name;
@@ -97,8 +80,6 @@ RETURN a,r,b;
 
 // ===============================
 // 6. TRAVERSAL
-// ===============================
-
 // 1-hop (friends)
 MATCH (p:Person {name:'Alice'})-[:FRIEND]->(f)
 RETURN f;
@@ -117,8 +98,6 @@ RETURN n;
 
 // ===============================
 // 7. PATH QUERIES
-// ===============================
-
 // Shortest path
 MATCH p = shortestPath(
  (a:Person {name:'Alice'})-[*]-(b:Person {name:'Charlie'})
